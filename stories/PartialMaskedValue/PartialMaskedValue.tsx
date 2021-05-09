@@ -2,13 +2,13 @@ import React, { FC, useState, useCallback, useMemo, useRef } from "react";
 
 import { useInputMask, InputMaskChangeHandler } from "../../src";
 
-export const CustomInput: FC = () => {
+export const PartialMaskedValue: FC = () => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChangeHandler: InputMaskChangeHandler = useCallback(
-    ({ unmaskedValue, partialMaskedValue, maskedValue }) => {
-      setInputValue(unmaskedValue);
+    ({ partialMaskedValue }) => {
+      setInputValue(partialMaskedValue);
     },
     [],
   );
@@ -29,7 +29,7 @@ export const CustomInput: FC = () => {
     <input
       ref={inputRef}
       style={{ width: "400px" }}
-      value={inputMask.maskedValue}
+      value={inputMask.partialMaskedValue}
       onChange={inputMask.onChange}
     />
   );
